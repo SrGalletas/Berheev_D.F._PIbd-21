@@ -26,6 +26,6 @@ namespace Lab1
         /// Отрисовка аробуса
         /// </summary>
         /// <param name="g"></param>
-        void DrawAirBus(Graphics g);
+        void DrawAir(Graphics g);
     }
 }

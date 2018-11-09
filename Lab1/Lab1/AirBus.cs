@@ -8,41 +8,8 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    class AirBus
+    public class AirBus : Air
     {
-        /// <summary>
-        /// Левая координата отрисовки аэробуса
-        /// </summary>
-        private float _startPosX;
-        /// <summary>
-        /// Правая кооридната отрисовки аэробуса
-        /// </summary>
-        private float _startPosY;
-        /// <summary>
-        /// Ширина окна отрисовки
-        /// </summary>
-        private int _pictureWidth;
-        ///Высота окна отрисовки
-        private int _pictureHeight;
-        /// <summary>
-        /// Ширина отрисовки аэробуса
-        /// </summary>
-        private const int airWidth = 130;
-        /// <summary>
-        /// Высота отрисовки аэробуса
-        /// </summary>
-        private const int airHeight = 60;
-        /// <summary>
-        /// Максимальная скорость
-        /// </summary>
-        public int MaxSpeed { private set; get; }
-        /// <summary>
-        /// Вес аэробуса
-        /// </summary>
-        public float Weight { private set; get; }
-        /// <summary>/// Основной цвет кузова
-        /// </summary>
-        public Color MainColor { private set; get; }
         /// <summary>
         /// Дополнительный цвет
         /// </summary>
@@ -70,74 +37,20 @@ namespace Lab1
         /// <param name="wings">Признак наличия крыльев</param>
         /// <param name="tail">Признак наличия хвоста</param>
         public AirBus(int maxSpeed, float weight, Color mainColor, Color dopColor, bool
-        turbines, bool wings, bool tail)
+        turbines, bool wings, bool tail) :
+            base(maxSpeed, weight, mainColor)
         {
-            MaxSpeed = maxSpeed;
-            Weight = weight;
-            MainColor = mainColor;
             DopColor = dopColor;
             Turbines = turbines;
             Wings = wings;
             Tail = tail;
         }
-        /// <summary>
-        /// Установка позиции аэробуса
-        /// </summary>
-        /// <param name="x">Координата X</param>
-        /// <param name="y">Координата Y</param>
-        /// <param name="width">Ширина картинки</param>
-        /// <param name="height">Высота картинки</param>
-        public void SetPosition(int x, int y, int width, int height)
-        {
-            _startPosX = x;
-            _startPosY = y;
-            _pictureWidth = width;
-            _pictureHeight = height;
-        }
-        /// <summary>
-        /// Изменение направления пермещения
-        /// </summary>
-        /// <param name="direction">Направление</param>
-        public void MoveTransport(Direction direction)
-        {
-            float step = MaxSpeed * 100 / Weight;
-            switch (direction)
-            {
-                // вправо
-                case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - airWidth)
-                    {
-                        _startPosX += step;
-                    }
-                    break;
-                //влево
-                case Direction.Left:
-                    if (_startPosX - step > 0)
-                    {
-                        _startPosX -= step;
-                    }
-                    break;
-                //вверх
-                case Direction.Up:
-                    if (_startPosY - step > 0)
-                    {
-                        _startPosY -= step;
-                    }
-                    break;
-                //вниз
-                case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - airHeight)
-                    {
-                        _startPosY += step;
-                    }
-                    break;
-            }
-        }
+     
         /// <summary>
         /// Отрисовка аэробуса
         /// </summary>
         /// <param name="g"></param>
-        public void DrawAirBus(Graphics g)
+        public override void DrawAir(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
             // отрисуем сперва турбины (чтобы потом отрисовка крыльев на них "легла") 

@@ -12,7 +12,7 @@ namespace Lab1
 {
     public partial class FormAir : Form
     {
-        private AirBus air;
+        private ITransport air;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -28,30 +28,42 @@ namespace Lab1
         {
             Bitmap bmp = new Bitmap(pictureBoxAir.Width, pictureBoxAir.Height);
             Graphics gr = Graphics.FromImage(bmp);
-            air.DrawAirBus(gr);
+            air.DrawAir(gr);
             pictureBoxAir.Image = bmp;
         }
-        /// <summary>/// Обработка нажатия кнопки "Создать"
+        /// <summary>/// Обработка нажатия кнопки "Создать самолёт"
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void buttonCreateAir_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            air = new AirBus(rnd.Next(100,500), rnd.Next(1000, 2000), Color.Gray,
-            Color.Blue, true, true, true);
+            air = new Air(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
             air.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAir.Width,
             pictureBoxAir.Height);
             Draw();
         }
-
         /// <summary>
-        /// Обработка нажатия кнопок управления
+        /// Обработка нажатия кнопки "Создать аэробус"
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonMove_Click(object sender, EventArgs e)
+        private void buttonCreateAirBus_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            air = new AirBus(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
+            Color.Gray, true, true, true);
+            air.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAir.Width,
+            pictureBoxAir.Height);
+            Draw();
+        }
+            /// <summary>
+            /// Обработка нажатия кнопок управления
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            private void buttonMove_Click(object sender, EventArgs e)
         {
             //получаем имя кнопки
             string name = (sender as Button).Name;
