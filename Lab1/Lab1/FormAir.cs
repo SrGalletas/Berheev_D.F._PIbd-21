@@ -52,8 +52,8 @@ namespace Lab1
         private void buttonCreateAirBus_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            air = new AirBus(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue,
-            Color.Gray, true, true, true);
+            air = new AirBus(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray,
+            Color.Blue, true, true, true);
             air.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAir.Width,
             pictureBoxAir.Height);
             Draw();
