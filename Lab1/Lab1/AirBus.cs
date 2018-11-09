@@ -5,13 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum Direction
-{
-    Up,
-    Down,
-    Left,
-    Right
-}
 
 namespace Lab1
 {
@@ -57,15 +50,15 @@ namespace Lab1
         /// <summary>
         /// Признак наличия турбин
         /// </summary>
-        public bool DownTurb { private set; get; }
+        public bool Turbines { private set; get; }
         /// <summary>
         /// Признак наличия крыльев
         /// </summary>
-        public bool SideSpoiler { private set; get; }
+        public bool Wings { private set; get; }
         /// <summary>
         /// Признак наличия хвоста
         /// </summary>
-        public bool BackSpoiler { private set; get; }
+        public bool Tail { private set; get; }
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -73,19 +66,19 @@ namespace Lab1
         /// <param name="weight">Вес аэробуса</param>
         /// <param name="mainColor">Основной цвет кузова</param>
         /// <param name="dopColor">Дополнительный цвет</param>
-        /// <param name="downTurb">Признак наличия турбины</param>
-        /// <param name="sideSpoiler">Признак наличия боковых спойлеров</param>
-        /// <param name="backSpoiler">Признак наличия заднего спойлера</param>
+        /// <param name="turbines">Признак наличия турбины</param>
+        /// <param name="wings">Признак наличия крыльев</param>
+        /// <param name="tail">Признак наличия хвоста</param>
         public AirBus(int maxSpeed, float weight, Color mainColor, Color dopColor, bool
-        downTurb, bool sideSpoiler, bool backSpoiler)
+        turbines, bool wings, bool tail)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             DopColor = dopColor;
-            DownTurb = downTurb;
-            SideSpoiler = sideSpoiler;
-            BackSpoiler = backSpoiler;
+            Turbines = turbines;
+            Wings = wings;
+            Tail = tail;
         }
         /// <summary>
         /// Установка позиции аэробуса
@@ -150,7 +143,7 @@ namespace Lab1
             // отрисуем сперва турбины (чтобы потом отрисовка крыльев на них "легла") 
             Brush brGray = new SolidBrush(MainColor);
 
-            if (DownTurb)
+            if (Turbines)
             {
                 Brush black = new SolidBrush(Color.Black);
 
@@ -160,7 +153,7 @@ namespace Lab1
                 g.FillRectangle(brGray, _startPosX + 17, _startPosY + 46, 11, 4);
             }
             //крылья
-            if (SideSpoiler)
+            if (Wings)
             {
                 Pen gray = new Pen(Color.Gray, 10);
                 g.DrawLine(gray, _startPosX + 20, _startPosY - 20, _startPosX + 45, _startPosY + 25);
@@ -177,7 +170,7 @@ namespace Lab1
 
 
             // рисуем окна аэробуса
-            if (BackSpoiler)
+            if (Tail)
             {
                 Brush spoiler = new SolidBrush(Color.Blue);
 
