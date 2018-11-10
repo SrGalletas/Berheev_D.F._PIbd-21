@@ -39,7 +39,7 @@ namespace Lab1
         private void buttonCreateAir_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            air = new Air(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue);
+            air = new Air(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Gray);
             air.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAir.Width,
             pictureBoxAir.Height);
             Draw();

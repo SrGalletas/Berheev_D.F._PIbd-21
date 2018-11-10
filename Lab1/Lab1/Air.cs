@@ -67,37 +67,23 @@ namespace Lab1
         public override void DrawAir(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            //границы автомобиля
-            g.DrawEllipse(pen, _startPosX, _startPosY, 20, 20);
-            g.DrawEllipse(pen, _startPosX, _startPosY + 30, 20, 20);
-            g.DrawEllipse(pen, _startPosX + 70, _startPosY, 20, 20);
-            g.DrawEllipse(pen, _startPosX + 70, _startPosY + 30, 20, 20);
-            g.DrawRectangle(pen, _startPosX - 1, _startPosY + 10, 10, 30);
-            g.DrawRectangle(pen, _startPosX + 80, _startPosY + 10, 10, 30);
-            g.DrawRectangle(pen, _startPosX + 10, _startPosY - 1, 70, 52);
-            //задние фары
-            Brush brRed = new SolidBrush(Color.Red);
-            g.FillEllipse(brRed, _startPosX, _startPosY, 20, 20);
-            g.FillEllipse(brRed, _startPosX, _startPosY + 30, 20, 20);
-            //передние фары
-            Brush brYellow = new SolidBrush(Color.Yellow);
-            g.FillEllipse(brYellow, _startPosX + 70, _startPosY, 20, 20);
-            g.FillEllipse(brYellow, _startPosX + 70, _startPosY + 30, 20, 20);
-            //кузов
-            Brush br = new SolidBrush(MainColor);
-            g.FillRectangle(br, _startPosX, _startPosY + 10, 10, 30);
-            g.FillRectangle(br, _startPosX + 80, _startPosY + 10, 10, 30);
-            g.FillRectangle(br, _startPosX + 10, _startPosY, 70, 50);
-            //стекла
-            Brush brBlue = new SolidBrush(Color.LightBlue);
-            g.FillRectangle(brBlue, _startPosX + 60, _startPosY + 5, 5, 40);
-            g.FillRectangle(brBlue, _startPosX + 20, _startPosY + 5, 5, 40);
-            g.FillRectangle(brBlue, _startPosX + 25, _startPosY + 3, 35, 2);
-            g.FillRectangle(brBlue, _startPosX + 25, _startPosY + 46, 35, 2);
-            //выделяем рамкой крышу
-            g.DrawRectangle(pen, _startPosX + 25, _startPosY + 5, 35, 40);
-            g.DrawRectangle(pen, _startPosX + 65, _startPosY + 10, 25, 30);
-            g.DrawRectangle(pen, _startPosX, _startPosY + 10, 15, 30);
+            Brush brGray = new SolidBrush(MainColor);
+            //крылья
+            Pen gray = new Pen(Color.Gray, 10);
+            g.DrawLine(gray, _startPosX + 20, _startPosY - 20, _startPosX + 45, _startPosY + 25);
+            g.DrawLine(gray, _startPosX + 20, _startPosY + 65, _startPosX + 45, _startPosY + 25);
+
+            // теперь отрисуем основной кузов аэробуса
+            Pen grayPen = new Pen(Color.Gray, 10);
+            g.DrawEllipse(pen, _startPosX - 5, _startPosY + 15, 100, 20);
+            g.FillEllipse(brGray, _startPosX - 5, _startPosY + 15, 100, 20);
+
+            //хвост
+            g.DrawLine(grayPen, _startPosX - 15, _startPosY, _startPosX, _startPosY + 25);
+            
+            // рисуем окно аэробуса
+            Pen white = new Pen(Color.White, 3);
+            g.DrawLine(white, _startPosX + 80, _startPosY + 20, _startPosX + 90, _startPosY + 25);
         }
     }
 }
