@@ -70,13 +70,13 @@ namespace Lab1
             Brush brGray = new SolidBrush(MainColor);
             //крылья
             Pen gray = new Pen(Color.Gray, 10);
-            g.DrawLine(gray, _startPosX + 20, _startPosY - 20, _startPosX + 45, _startPosY + 25);
-            g.DrawLine(gray, _startPosX + 20, _startPosY + 65, _startPosX + 45, _startPosY + 25);
+            g.DrawLine(gray, _startPosX + 30, _startPosY, _startPosX + 55, _startPosY + 40);
+            g.DrawLine(gray, _startPosX + 30, _startPosY + 80, _startPosX + 55, _startPosY + 40);
 
             // теперь отрисуем основной кузов аэробуса
             Pen grayPen = new Pen(Color.Gray, 10);
-            g.DrawEllipse(pen, _startPosX - 5, _startPosY + 15, 100, 20);
-            g.FillEllipse(brGray, _startPosX - 5, _startPosY + 15, 100, 20);
+            g.DrawEllipse(pen, _startPosX, _startPosY + 20, 100, 15);
+            g.FillEllipse(brGray, _startPosX, _startPosY + 20, 100, 15);
 
             //хвост
             g.DrawLine(grayPen, _startPosX - 15, _startPosY, _startPosX, _startPosY + 25);

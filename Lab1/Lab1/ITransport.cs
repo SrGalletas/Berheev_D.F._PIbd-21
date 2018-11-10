@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    interface ITransport
+    public interface ITransport
     {
         /// <summary>
         /// Установка позиции аэробуса
