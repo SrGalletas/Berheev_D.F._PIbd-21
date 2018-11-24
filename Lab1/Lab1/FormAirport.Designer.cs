@@ -36,6 +36,8 @@
             this.buttonTakeAir = new System.Windows.Forms.Button();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeAir)).BeginInit();
@@ -43,7 +45,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(635, 15);
+            this.button1.Location = new System.Drawing.Point(641, 168);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 38);
             this.button1.TabIndex = 1;
@@ -53,7 +55,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(636, 59);
+            this.button2.Location = new System.Drawing.Point(641, 212);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(150, 37);
             this.button2.TabIndex = 2;
@@ -76,16 +78,16 @@
             this.groupBox1.Controls.Add(this.buttonTakeAir);
             this.groupBox1.Controls.Add(this.maskedTextBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(635, 242);
+            this.groupBox1.Location = new System.Drawing.Point(635, 255);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(156, 234);
+            this.groupBox1.Size = new System.Drawing.Size(156, 221);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Забрать транспорт";
             // 
             // pictureBoxTakeAir
             // 
-            this.pictureBoxTakeAir.Location = new System.Drawing.Point(6, 111);
+            this.pictureBoxTakeAir.Location = new System.Drawing.Point(6, 101);
             this.pictureBoxTakeAir.Name = "pictureBoxTakeAir";
             this.pictureBoxTakeAir.Size = new System.Drawing.Size(140, 114);
             this.pictureBoxTakeAir.TabIndex = 3;
@@ -93,7 +95,7 @@
             // 
             // buttonTakeAir
             // 
-            this.buttonTakeAir.Location = new System.Drawing.Point(28, 81);
+            this.buttonTakeAir.Location = new System.Drawing.Point(28, 62);
             this.buttonTakeAir.Name = "buttonTakeAir";
             this.buttonTakeAir.Size = new System.Drawing.Size(86, 24);
             this.buttonTakeAir.TabIndex = 2;
@@ -103,7 +105,7 @@
             // 
             // maskedTextBox
             // 
-            this.maskedTextBox.Location = new System.Drawing.Point(73, 54);
+            this.maskedTextBox.Location = new System.Drawing.Point(72, 36);
             this.maskedTextBox.Name = "maskedTextBox";
             this.maskedTextBox.Size = new System.Drawing.Size(42, 20);
             this.maskedTextBox.TabIndex = 1;
@@ -111,17 +113,36 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 57);
+            this.label1.Location = new System.Drawing.Point(25, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Место:";
+            // 
+            // listBoxLevels
+            // 
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.Location = new System.Drawing.Point(641, 28);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(148, 134);
+            this.listBoxLevels.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(690, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Уровни:";
             // 
             // FormAirport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 488);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -133,6 +154,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeAir)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -146,5 +168,7 @@
         private System.Windows.Forms.Button buttonTakeAir;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Label label2;
     }
 }
