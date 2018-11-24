@@ -126,6 +126,7 @@
             this.listBoxLevels.Name = "listBoxLevels";
             this.listBoxLevels.Size = new System.Drawing.Size(148, 134);
             this.listBoxLevels.TabIndex = 4;
+            this.listBoxLevels.Click += new System.EventHandler(this.listBoxLevels_SelectedIndexChanged);
             // 
             // label2
             // 
