@@ -51,10 +51,10 @@ namespace Lab1
         }
         /// <summary>
         /// Перегрузка оператора сложения
-        /// Логика действия: на парковку добавляется автомобиль
+        /// Логика действия: на парковку добавляется самолёт
         /// </summary>
         /// <param name="p">Парковка</param>
-        /// <param name="air">Добавляемый автомобиль</param>
+        /// <param name="air">Добавляемый самолёт</param>
         /// <returns></returns>
         public static int operator +(Airport<T> p, T air)
         {

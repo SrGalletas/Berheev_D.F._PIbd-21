@@ -73,17 +73,19 @@ namespace Lab1
             g.DrawLine(gray, _startPosX + 40, _startPosY, _startPosX + 65, _startPosY + 40);
             g.DrawLine(gray, _startPosX + 40, _startPosY + 75, _startPosX + 65, _startPosY + 40);
 
-            // теперь отрисуем основной кузов аэробуса
+            //хвост
             Pen grayPen = new Pen(Color.Gray, 10);
-            g.DrawEllipse(pen, _startPosX - 5, _startPosY + 25, 100, 20);
+            g.DrawLine(grayPen, _startPosX, _startPosY + 7, _startPosX + 15, _startPosY + 32);
+
+            // теперь отрисуем основной кузов аэробуса
+          
+            g.DrawEllipse(pen, _startPosX + 10, _startPosY + 25, 100, 20);
             g.FillEllipse(brGray, _startPosX + 10, _startPosY + 25, 100, 20);
 
-            //хвост
-            g.DrawLine(grayPen, _startPosX, _startPosY, _startPosX + 15, _startPosY + 25);
-            
+                       
             // рисуем окно аэробуса
             Pen white = new Pen(Color.White, 3);
-            g.DrawLine(white, _startPosX + 80, _startPosY + 20, _startPosX + 90, _startPosY + 25);
+            g.DrawLine(white, _startPosX + 96, _startPosY + 31, _startPosX + 105, _startPosY + 36);
         }
     }
 }
