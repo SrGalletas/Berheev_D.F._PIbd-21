@@ -17,9 +17,22 @@ namespace Lab1
         /// </summary>
         ITransport air = null;
 
+        /// <summary>
+        /// Событие
+        /// </summary>
+        private event airDelegate eventAddAir;
+
         public FormAirConfig()
         {
             InitializeComponent();
+            panelBlack.MouseDown += panelColor_MouseDown;
+            panelYellow.MouseDown += panelColor_MouseDown;
+            panelGray.MouseDown += panelColor_MouseDown;
+            panelGreen.MouseDown += panelColor_MouseDown;
+            panelRed.MouseDown += panelColor_MouseDown;
+            panelWhite.MouseDown += panelColor_MouseDown;
+            panelOrange.MouseDown += panelColor_MouseDown;
+            panelBlue.MouseDown += panelColor_MouseDown; buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
 
         /// <summary>
@@ -36,6 +49,23 @@ namespace Lab1
                 pictureBoxAir.Image = bmp;
             }
         }
+
+        /// <summary>
+        /// Добавление события
+        /// </summary>
+        /// <param name="ev"></param>
+        public void AddEvent(airDelegate ev)
+        {
+            if (eventAddAir == null)
+            {
+                eventAddAir = new airDelegate(ev);
+            }
+            else
+            {
+                eventAddAir += ev;
+            }
+        }
+
         /// <summary>
         /// Передаем информацию при нажатии на Label
         /// </summary>
@@ -74,83 +104,96 @@ DragDropEffects.Copy);
                 e.Effect = DragDropEffects.None;
             }
         }
-           /// <summary>
-            /// Действия при приеме перетаскиваемой информации
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-        
+        /// <summary>
+        /// Действия при приеме перетаскиваемой информации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
 
         private void panelAir_DragDrop(object sender, DragEventArgs e)
         {
             switch (e.Data.GetData(DataFormats.Text).ToString())
             {
                 case "Обычный самолёт":
-                    air = new Air(100, 500, Color.White);
+                    air = new Air(100, 500, Color.Black);
                     break;
                 case "Аэробус":
-                    air = new AirBus(100, 500, Color.White, Color.Black, true, true,
+                    air = new AirBus(100, 500, Color.Gray, Color.Yellow, true, true,
                     true);
                     break;
             }
             DrawAir();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// Отправляем цвет с панели
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-
+            (sender as Control).DoDragDrop((sender as Control).BackColor,
+            DragDropEffects.Move | DragDropEffects.Copy);
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel8_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-       
-
+        /// <summary>
+        /// Принимаем основной цвет
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void labelBaseColor_DragDrop(object sender, DragEventArgs e)
         {
-
+            if (air != null)
+            {
+                air.SetMainColor((Color)e.Data.GetData(typeof(Color)));
+                DrawAir();
+            }
         }
 
+        /// <summary>
+        /// Проверка получаемой информации (ее типа на соответствие требуемому)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void labelBaseColor_DragEnter(object sender, DragEventArgs e)
         {
-
+            if (e.Data.GetDataPresent(typeof(Color)))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
-
+        /// <summary>
+        /// Принимаем дополнительный цвет
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void labelDopColor_DragDrop(object sender, DragEventArgs e)
         {
+            if (air != null)
+            {
+                if (air is AirBus)
+                {
+                    (air as AirBus).SetDopColor((Color)e.Data.GetData(typeof(Color)));
+                    DrawAir();
+                }
+            }
+        }
 
+        /// <summary>
+        /// Добавление машины
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddAir_Click(object sender, EventArgs e)
+        {
+            eventAddAir?.Invoke(air);
+            Close();
         }
     }
 }
