@@ -12,11 +12,11 @@ namespace Lab1
         /// <summary>
         /// Ширина отрисовки аэробуса
         /// </summary>
-        protected const int carWidth = 130;
+        protected const int airWidth = 130;
         /// <summary>
         /// Ширина отрисовки аэробуса
         /// </summary>
-        protected const int carHeight = 60;
+        protected const int airHeight = 60;
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -29,6 +29,22 @@ namespace Lab1
             Weight = weight;
             MainColor = mainColor;
         }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="info">Информация по объекту</param>
+        public Air(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
+
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
@@ -36,7 +52,7 @@ namespace Lab1
             {
                 // вправо
                 case Direction.Right:
-                    if (_startPosX + step < _pictureWidth - carWidth)
+                    if (_startPosX + step < _pictureWidth - airWidth)
                     {
                         _startPosX += step;
                     }
@@ -57,7 +73,7 @@ namespace Lab1
                     break;
                 //вниз
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - carHeight)
+                    if (_startPosY + step < _pictureHeight - airHeight)
                     {
                         _startPosY += step;
                     }
@@ -86,6 +102,10 @@ namespace Lab1
             // рисуем окно аэробуса
             Pen white = new Pen(Color.White, 3);
             g.DrawLine(white, _startPosX + 96, _startPosY + 31, _startPosX + 105, _startPosY + 36);
+        }
+        public override string ToString()
+        {
+            return MaxSpeed + ";" + Weight + ";" + MainColor.Name;
         }
     }
 }
