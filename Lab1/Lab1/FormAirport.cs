@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,11 @@ namespace Lab1
         /// Количество уровней-парковок
         /// </summary>
         private const int countLevel = 5;
+
+        /// <summary>
+        /// Логгер
+        /// </summary>
+        private Logger logger;
 
         public FormAirport()
         {
@@ -55,7 +61,7 @@ namespace Lab1
             }
         }
 
-        
+
         /// <summary>
         /// Обработка нажатия кнопки "Забрать"
         /// </summary>
@@ -67,24 +73,35 @@ namespace Lab1
             {
                 if (maskedTextBox.Text != "")
                 {
-                    var air = airport[listBoxLevels.SelectedIndex] -
-                    Convert.ToInt32(maskedTextBox.Text);
-                    if (air != null)
+                    try
                     {
+                        var air = airport[listBoxLevels.SelectedIndex] -
+                        Convert.ToInt32(maskedTextBox.Text);
+
                         Bitmap bmp = new Bitmap(pictureBoxTakeAir.Width, pictureBoxTakeAir.Height);
                         Graphics gr = Graphics.FromImage(bmp);
                         air.SetPosition(5, 5, pictureBoxTakeAir.Width,
                         pictureBoxTakeAir.Height);
                         air.DrawAir(gr);
                         pictureBoxTakeAir.Image = bmp;
+
+                        logger.Info("Изъят самолёт " + air.ToString() + " с места " +
+    maskedTextBox.Text);
+                        Draw();
                     }
-                    else
+                    catch (AirportNotFoundException ex)
                     {
+                        MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK,
+    MessageBoxIcon.Error);
                         Bitmap bmp = new Bitmap(pictureBoxTakeAir.Width,
-                        pictureBoxTakeAir.Height);
+                            pictureBoxTakeAir.Height);
                         pictureBoxTakeAir.Image = bmp;
                     }
-                    Draw();
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Неизвестная ошибка",
+       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -98,6 +115,11 @@ namespace Lab1
             Draw();
         }
 
+        /// <summary>
+        /// Обработка нажатия кнопки "Добавить самолёт"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSetAir_Click_1(object sender, EventArgs e)
         {
             form = new FormAirConfig();
@@ -114,14 +136,22 @@ namespace Lab1
         {
             if (air != null && listBoxLevels.SelectedIndex > -1)
             {
-                int place = airport[listBoxLevels.SelectedIndex] + air;
-                if (place > -1)
+                try
                 {
+                    int place = airport[listBoxLevels.SelectedIndex] + air;
+                    logger.Info("Добавлен самолёт " + air.ToString() + " на место " +
+place);
                     Draw();
                 }
-                else
+                catch (AirportOverflowException ex)
                 {
-                    MessageBox.Show("Самолёт не удалось поставить");
+                    MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -133,17 +163,20 @@ namespace Lab1
         /// <param name="e"></param>
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (airport.SaveData(saveFileDialog.FileName))
+                try
                 {
+                    airport.SaveData(saveFileDialog.FileName);
+
                     MessageBox.Show("Сохранение прошло успешно", "Результат",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -155,17 +188,20 @@ namespace Lab1
         /// <param name="e"></param>
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (airport.LoadData(openFileDialog.FileName))
+                try
                 {
+                    airport.LoadData(openFileDialog.FileName);
+
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Draw();
             }
