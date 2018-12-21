@@ -11,7 +11,7 @@ namespace Lab1
     /// Параметризованны класс для хранения набора объектов от интерфейса ITransport
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Airport<T> where T : class, ITransport
+    public class Airport<T> : IEnumerator<T>, IEnumerable<T>, IComparable<Airport<T>> where T : class, ITransport
     {
         /// <summary>
         /// Массив объектов, которые храним
@@ -38,6 +38,20 @@ namespace Lab1
         /// </summary>
         private int _placeSizeHeight = 95;
         /// <summary>
+        /// Текущий элемент для вывода через IEnumerator (будет обращаться по своему индексу к ключу словаря, по которму будет возвращаться запись)
+        /// </summary>
+        private int _currentIndex;
+        /// <summary>
+        /// Получить порядковое место на парковке
+        /// </summary>
+        public int GetKey
+        {
+            get
+            {
+                return _places.Keys.ToList()[_currentIndex];
+            }
+        }
+        /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="sizes">Количество мест на парковке</param>
@@ -47,6 +61,7 @@ namespace Lab1
         {
             _maxCount = sizes;
             _places = new Dictionary<int, T>();
+            _currentIndex = -1;
             PictureWidth = pictureWidth;
             PictureHeight = pictureHeight;
         }

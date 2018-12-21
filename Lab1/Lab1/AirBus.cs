@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab1
 {
-    public class AirBus : Air
+    public class AirBus : Air, IComparable<AirBus>, IEquatable<AirBus>
     {
         /// <summary>
         /// Дополнительный цвет
@@ -130,6 +130,100 @@ namespace Lab1
         {
             return base.ToString() + ";" + DopColor.Name + ";" + Turbines + ";" +
             Wings + ";" + Tail;
+        }
+        /// <summary>
+        /// Метод интерфейса IComparable для класса SportCar
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(AirBus other)
+        {
+            var res = (this is Air).CompareTo(other is Air);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (DopColor != other.DopColor)
+            {
+                DopColor.Name.CompareTo(other.DopColor.Name);
+            }
+            if (Turbines != other.Turbines)
+            {
+                return Turbines.CompareTo(other.Turbines);
+            }
+            if (Wings != other.Wings)
+            {
+                return Wings.CompareTo(other.Wings);
+            }
+            if (Tail != other.Tail)
+            {
+                return Tail.CompareTo(other.Tail);
+            }
+
+            return 0;
+        }
+        /// <summary>
+        /// Метод интерфейса IEquatable для класса SportCar
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool Equals(AirBus other)
+        {
+            var res = (this as Air).Equals(other as Air);
+            if (!res)
+            {
+                return res;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (Turbines != other.Turbines)
+            {
+                return false;
+            }
+            if (Wings != other.Wings)
+            {
+                return false;
+            }
+            if (Tail != other.Tail)
+            {
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            AirBus airObj = obj as AirBus;
+            if (airObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(airObj);
+            }
+        }
+        /// <summary>
+        /// Перегрузка метода от object
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
