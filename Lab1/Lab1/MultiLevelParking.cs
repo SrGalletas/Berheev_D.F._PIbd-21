@@ -20,7 +20,7 @@ namespace Lab1
         /// <summary>
         /// Сколько мест на каждом уровне
         /// </summary>
-        private const int countPlaces = 25;
+        private const int countPlaces = 15;
 
         /// <summary>
         /// Ширина окна отрисовки
