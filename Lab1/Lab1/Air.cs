@@ -10,6 +10,7 @@ namespace Lab1
     public class Air : Vehicle, IComparable<Air>, IEquatable<Air>
     {
         /// <summary>
+        /// <summary>
         /// Ширина отрисовки аэробуса
         /// </summary>
         protected const int airWidth = 130;
