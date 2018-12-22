@@ -77,8 +77,7 @@ namespace Lab1
             }
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                using (BufferedStream bs = new BufferedStream(fs))
-                {
+               
                     //Записываем количество уровней
                     WriteToFile("CountLeveles:" + parkingStages.Count +
                     Environment.NewLine, fs);
@@ -109,7 +108,7 @@ namespace Lab1
                     }
                 }
             }
-        }
+        
         /// <summary>
         /// Метод записи информации в файл
         /// </summary>
@@ -137,7 +136,7 @@ namespace Lab1
                 {
                     byte[] b = new byte[fs.Length];
                     UTF8Encoding temp = new UTF8Encoding(true);
-                    while (bs.Read(b, 0, b.Length) > 0)
+                    while (fs.Read(b, 0, b.Length) > 0)
                     {
                         bufferTextFromFile += temp.GetString(b);
                     }
