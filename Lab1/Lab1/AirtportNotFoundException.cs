@@ -11,7 +11,7 @@ namespace Lab1
     /// </summary>
     public class AirportNotFoundException : Exception
     {
-        public AirportNotFoundException(int i) : base("Не найден автомобиль по месту " + i)
+        public AirportNotFoundException(int i) : base("Не найден самолёт по месту " + i)
         { }
     }
 }
