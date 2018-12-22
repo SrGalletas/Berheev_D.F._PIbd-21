@@ -77,39 +77,38 @@ namespace Lab1
             }
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-                using (BufferedStream bs = new BufferedStream(fs))
+
+                //Записываем количество уровней
+                WriteToFile("CountLeveles:" + parkingStages.Count +
+                Environment.NewLine, fs);
+                foreach (var level in parkingStages)
                 {
-                    //Записываем количество уровней
-                    WriteToFile("CountLeveles:" + parkingStages.Count +
-                    Environment.NewLine, fs);
-                    foreach (var level in parkingStages)
+                    //Начинаем уровень
+                    WriteToFile("Level" + Environment.NewLine, fs);
+                    for (int i = 0; i < countPlaces; i++)
                     {
-                        //Начинаем уровень
-                        WriteToFile("Level" + Environment.NewLine, fs);
-                        for (int i = 0; i < countPlaces; i++)
+                        try
                         {
-                            try
+                            var air = level[i];
+                            //если место не пустое
+                            //Записываем тип самолёта
+                            if (air.GetType().Name == "Air")
                             {
-                                var air = level[i];
-                                //если место не пустое
-                                //Записываем тип самолёта
-                                if (air.GetType().Name == "Air")
-                                {
-                                    WriteToFile(i + ":Air:", fs);
-                                }
-                                if (air.GetType().Name == "AirBus")
-                                {
-                                    WriteToFile(i + ":AirBus:", fs);
-                                }
-                                //Записываемые параметры
-                                WriteToFile(air + Environment.NewLine, fs);
+                                WriteToFile(i + ":Air:", fs);
                             }
-                            finally { }
+                            if (air.GetType().Name == "AirBus")
+                            {
+                                WriteToFile(i + ":AirBus:", fs);
+                            }
+                            //Записываемые параметры
+                            WriteToFile(air + Environment.NewLine, fs);
                         }
+                        finally { }
                     }
                 }
             }
         }
+
         /// <summary>
         /// Метод записи информации в файл
         /// </summary>
@@ -133,16 +132,15 @@ namespace Lab1
             string bufferTextFromFile = "";
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                using (BufferedStream bs = new BufferedStream(fs))
+
+                byte[] b = new byte[fs.Length];
+                UTF8Encoding temp = new UTF8Encoding(true);
+                while (fs.Read(b, 0, b.Length) > 0)
                 {
-                    byte[] b = new byte[fs.Length];
-                    UTF8Encoding temp = new UTF8Encoding(true);
-                    while (bs.Read(b, 0, b.Length) > 0)
-                    {
-                        bufferTextFromFile += temp.GetString(b);
-                    }
+                    bufferTextFromFile += temp.GetString(b);
                 }
             }
+
             bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
             var strs = bufferTextFromFile.Split('\n');
             if (strs[0].Contains("CountLeveles"))
