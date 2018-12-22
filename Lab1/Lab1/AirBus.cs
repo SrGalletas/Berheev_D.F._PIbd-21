@@ -128,8 +128,7 @@ namespace Lab1
         }
         public override string ToString()
         {
-            return base.ToString() + ";" + DopColor.Name + ";" + Turbines + ";" +
-            Wings + ";" + Tail;
+            return base.ToString() + ";" + DopColor.Name + ";" + MainColor + ";" + Turbines + ";" + Wings + ";" + Tail;
         }
         /// <summary>
         /// Метод интерфейса IComparable для класса SportCar
@@ -182,18 +181,11 @@ namespace Lab1
             {
                 return false;
             }
-            if (Turbines != other.Turbines)
+            if (MainColor != other.MainColor)
             {
                 return false;
             }
-            if (Wings != other.Wings)
-            {
-                return false;
-            }
-            if (Tail != other.Tail)
-            {
-                return false;
-            }
+          
             return true;
         }
         /// <summary>

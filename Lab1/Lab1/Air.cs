@@ -148,14 +148,7 @@ namespace Lab1
             {
                 return false;
             }
-            if (MaxSpeed != other.MaxSpeed)
-            {
-                return false;
-            }
-            if (Weight != other.Weight)
-            {
-                return false;
-            }
+            
             if (MainColor != other.MainColor)
             {
                 return false;
