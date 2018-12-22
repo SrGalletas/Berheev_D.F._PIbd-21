@@ -77,38 +77,33 @@ namespace Lab1
             }
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
-               
-                    //Записываем количество уровней
-                    WriteToFile("CountLeveles:" + parkingStages.Count +
-                    Environment.NewLine, fs);
-                    foreach (var level in parkingStages)
+
+                //Записываем количество уровней
+                WriteToFile("CountLeveles:" + parkingStages.Count +
+                Environment.NewLine, fs);
+                foreach (var level in parkingStages)
+                {
+                    //Начинаем уровень
+                    WriteToFile("Level" + Environment.NewLine, fs);
+                    foreach (ITransport air in level)
                     {
-                        //Начинаем уровень
-                        WriteToFile("Level" + Environment.NewLine, fs);
-                        for (int i = 0; i < countPlaces; i++)
+                        //если место не пустое
+                        //Записываем тип самолёта
+                        if (air.GetType().Name == "Air")
                         {
-                            try
-                            {
-                                var air = level[i];
-                                //если место не пустое
-                                //Записываем тип самолёта
-                                if (air.GetType().Name == "Air")
-                                {
-                                    WriteToFile(i + ":Air:", fs);
-                                }
-                                if (air.GetType().Name == "AirBus")
-                                {
-                                    WriteToFile(i + ":AirBus:", fs);
-                                }
-                                //Записываемые параметры
-                                WriteToFile(air + Environment.NewLine, fs);
-                            }
-                            finally { }
+                            WriteToFile(level.GetKey + ":Air:", fs);
                         }
+                        if (air.GetType().Name == "AirBus")
+                        {
+                            WriteToFile(level.GetKey + ":AirBus:", fs);
+                        }
+                        //Записываемые параметры
+                        WriteToFile(air + Environment.NewLine, fs);
                     }
                 }
             }
-        
+        }
+
         /// <summary>
         /// Метод записи информации в файл
         /// </summary>
@@ -132,15 +127,14 @@ namespace Lab1
             string bufferTextFromFile = "";
             using (FileStream fs = new FileStream(filename, FileMode.Open))
             {
-                using (BufferedStream bs = new BufferedStream(fs))
+
+                byte[] b = new byte[fs.Length];
+                UTF8Encoding temp = new UTF8Encoding(true);
+                while (fs.Read(b, 0, b.Length) > 0)
                 {
-                    byte[] b = new byte[fs.Length];
-                    UTF8Encoding temp = new UTF8Encoding(true);
-                    while (fs.Read(b, 0, b.Length) > 0)
-                    {
-                        bufferTextFromFile += temp.GetString(b);
-                    }
+                    bufferTextFromFile += temp.GetString(b);
                 }
+
             }
             bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
             var strs = bufferTextFromFile.Split('\n');
@@ -160,6 +154,7 @@ namespace Lab1
                 throw new Exception("Неверный формат файла");
             }
             int counter = -1;
+            int counterAir = 0;
             ITransport air = null;
             for (int i = 1; i < strs.Length; ++i)
             {
@@ -168,6 +163,7 @@ namespace Lab1
                 {
                     //начинаем новый уровень
                     counter++;
+                    counterAir = 0;
                     parkingStages.Add(new Airport<ITransport>(countPlaces, pictureWidth,
                     pictureHeight));
                     continue;
@@ -187,7 +183,15 @@ namespace Lab1
                 parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = air;
             }
         }
+        /// <summary>
+        /// Сортировка уровней
+        /// </summary>
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }
+
 
 

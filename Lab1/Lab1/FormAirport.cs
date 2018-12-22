@@ -149,6 +149,11 @@ place);
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
+                catch (AirportAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка",
@@ -199,6 +204,11 @@ place);
                     MessageBoxIcon.Information);
                     logger.Info("Загружено из файла " + openFileDialog.FileName);
                 }
+                catch (AirportOccupiedPlaceException ex)
+                {
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
@@ -206,6 +216,18 @@ place);
                 }
                 Draw();
             }
+        }
+
+        /// <summary>
+        /// Обработка нажатия кнопки "Сортировка"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            airport.Sort();
+            Draw();
+            logger.Info("Сортировка уровней");
         }
     }
 }
