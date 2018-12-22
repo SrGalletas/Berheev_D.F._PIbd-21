@@ -36,6 +36,7 @@ namespace Lab1
         public FormAirport()
         {
             InitializeComponent();
+            logger = LogManager.GetCurrentClassLogger();
             airport = new MultiLevelParking(countLevel, pictureBoxParking.Width,
             pictureBoxParking.Height);
             //заполнение listBox
@@ -138,7 +139,7 @@ namespace Lab1
             {
                 try
                 {
-                    int place = airport[listBoxLevels.SelectedIndex] + air;
+                    int place = airport [listBoxLevels.SelectedIndex] + air;
                     logger.Info("Добавлен самолёт " + air.ToString() + " на место " +
 place);
                     Draw();
