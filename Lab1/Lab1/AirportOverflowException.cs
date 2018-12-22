@@ -11,7 +11,7 @@ namespace Lab1
     /// </summary>
     class AirportOverflowException : Exception
     {
-        public AirportOverflowException() : base("На парковке нет свободных мест")
+        public AirportOverflowException() : base("В аэропорту нет свободных мест")
         { }
     }
 }
