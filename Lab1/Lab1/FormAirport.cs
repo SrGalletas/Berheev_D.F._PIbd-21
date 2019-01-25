@@ -139,7 +139,7 @@ namespace Lab1
             {
                 try
                 {
-                    int place = airport[listBoxLevels.SelectedIndex] + air;
+                    int place = airport [listBoxLevels.SelectedIndex] + air;
                     logger.Info("Добавлен самолёт " + air.ToString() + " на место " +
 place);
                     Draw();

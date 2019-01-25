@@ -85,6 +85,7 @@ namespace Lab1
                 {
                     //Начинаем уровень
                     WriteToFile("Level" + Environment.NewLine, fs);
+
                     foreach (ITransport air in level)
                     {
                         //если место не пустое
@@ -99,6 +100,7 @@ namespace Lab1
                         }
                         //Записываемые параметры
                         WriteToFile(air + Environment.NewLine, fs);
+
                     }
                 }
             }
@@ -136,6 +138,7 @@ namespace Lab1
                 }
 
             }
+
             bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
             var strs = bufferTextFromFile.Split('\n');
             if (strs[0].Contains("CountLeveles"))
