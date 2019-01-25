@@ -109,7 +109,7 @@ namespace Lab1
         /// <summary>
         /// Метод добавления самолёта
         /// </summary>
-        /// <param name="car"></param>
+        /// <param name="air"></param>
         private void AddAir(ITransport air)
         {
             if (air != null && listBoxLevels.SelectedIndex > -1)
@@ -123,6 +123,51 @@ namespace Lab1
                 {
                     MessageBox.Show("Самолёт не удалось поставить");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Обработка нажатия пункта меню "Сохранить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (airport.SaveData(saveFileDialog.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "Результат",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработка нажатия пункта меню "Загрузить"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (airport.LoadData(openFileDialog.FileName))
+                {
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+                Draw();
             }
         }
     }
