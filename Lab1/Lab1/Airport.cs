@@ -61,7 +61,7 @@ namespace Lab1
         {
             if (p._places.Count == p._maxCount)
             {
-                return -1;
+                throw new AirportOverflowException();
             }
             for (int i = 0; i < p._maxCount; i++)
             {
@@ -91,7 +91,7 @@ namespace Lab1
                 p._places.Remove(index);
                 return air;
             }
-            return null;
+            throw new AirportNotFoundException(index);
         }
         /// <summary>
         /// Метод проверки заполнености парковочного места (ячейки массива)
@@ -147,7 +147,7 @@ namespace Lab1
                 {
                     return _places[ind];
                 }
-                return null;
+                throw new AirportNotFoundException(ind);
             }
             set
             {
@@ -156,6 +156,10 @@ namespace Lab1
                     _places.Add(ind, value);
                     _places[ind].SetPosition(5 + ind / 5 * _placeSizeWidth + 5, ind % 5 *
                     _placeSizeHeight + 15, PictureWidth, PictureHeight);
+                }
+                else
+                {
+                    throw new AirportOccupiedPlaceException(ind);
                 }
             }
         }
