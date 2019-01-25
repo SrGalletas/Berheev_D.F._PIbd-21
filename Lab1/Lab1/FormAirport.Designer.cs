@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBoxTakeAir = new System.Windows.Forms.PictureBox();
@@ -38,30 +36,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBoxLevels = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.buttonSetAir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeAir)).BeginInit();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(641, 168);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 38);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Припарковать самолёт";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonSetAir_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(641, 212);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 37);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Припарковать аэробус";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonSetAirBus_Click);
             // 
             // pictureBoxParking
             // 
@@ -137,16 +116,25 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Уровни:";
             // 
+            // buttonSetAir
+            // 
+            this.buttonSetAir.Location = new System.Drawing.Point(641, 191);
+            this.buttonSetAir.Name = "buttonSetAir";
+            this.buttonSetAir.Size = new System.Drawing.Size(150, 40);
+            this.buttonSetAir.TabIndex = 8;
+            this.buttonSetAir.Text = "Заказать самолёт";
+            this.buttonSetAir.UseVisualStyleBackColor = true;
+            this.buttonSetAir.Click += new System.EventHandler(this.buttonSetAir_Click_1);
+            // 
             // FormAirport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 488);
+            this.Controls.Add(this.buttonSetAir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBoxParking);
             this.Name = "FormAirport";
             this.Text = " Аэродром";
@@ -162,8 +150,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBoxTakeAir;
         private System.Windows.Forms.Button buttonTakeAir;
@@ -171,5 +157,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBoxLevels;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonSetAir;
     }
 }

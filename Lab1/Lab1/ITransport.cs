@@ -27,5 +27,10 @@ namespace Lab1
         /// </summary>
         /// <param name="g"></param>
         void DrawAir(Graphics g);
+        /// <summary>
+        /// Смена основного цвета самолёта
+        /// </summary>
+        /// <param name="color"></param>
+        void SetMainColor(Color color);
     }
 }

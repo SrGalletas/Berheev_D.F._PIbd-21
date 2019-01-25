@@ -53,6 +53,12 @@
     <Compile Include="FormAir.Designer.cs">
       <DependentUpon>FormAir.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAirConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAirConfig.Designer.cs">
+      <DependentUpon>FormAirConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAirport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
     <Compile Include="Vehicle.cs" />
     <EmbeddedResource Include="FormAir.resx">
       <DependentUpon>FormAir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAirConfig.resx">
+      <DependentUpon>FormAirConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAirport.resx">
       <DependentUpon>FormAirport.cs</DependentUpon>

@@ -52,7 +52,7 @@ namespace Lab1
         /// <param name="g"></param>
         public override void DrawAir(Graphics g)
         {
-            Pen pen = new Pen(Color.Black);
+            Pen pen = new Pen(DopColor);
             // отрисуем сперва турбины (чтобы потом отрисовка крыльев на них "легла") 
             Brush brGray = new SolidBrush(MainColor);
 
@@ -61,9 +61,8 @@ namespace Lab1
                 Brush black = new SolidBrush(Color.Black);
 
                 g.FillRectangle(black, _startPosX + 28, _startPosY + 10, 18, 10);
-                g.FillRectangle(brGray, _startPosX + 28, _startPosY + 10, 18, 10);
                 g.FillRectangle(black, _startPosX + 28, _startPosY + 53, 19, 10);
-                g.FillRectangle(brGray, _startPosX + 28, _startPosY + 56, 19, 4);
+
             }
             //крылья
             if (Wings)
@@ -74,7 +73,7 @@ namespace Lab1
             }
 
 
-            Pen grayPen = new Pen(Color.Gray, 10);
+            Pen grayPen = new Pen(DopColor, 10);
 
             //хвост
             g.DrawLine(grayPen, _startPosX, _startPosY + 10, _startPosX + 15, _startPosY + 35);
@@ -83,7 +82,7 @@ namespace Lab1
             g.DrawEllipse(pen, _startPosX + 8, _startPosY + 27, 113, 18);
             g.FillEllipse(brGray, _startPosX + 8, _startPosY + 27, 113, 18);
 
-           
+
 
 
             // рисуем окна аэробуса
@@ -104,6 +103,13 @@ namespace Lab1
                 g.DrawLine(white, _startPosX + 103, _startPosY + 30, _startPosX + 113, _startPosY + 37);
 
             }
+        }
+        /// Смена дополнительного цвета
+        /// </summary>
+        /// <param name="color"></param>
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
         }
     }
 }
