@@ -223,7 +223,7 @@ place);
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonSort_Click(object sender, EventArgs e)
+        private void buttonSortt_Click(object sender, EventArgs e)
         {
             airport.Sort();
             Draw();
