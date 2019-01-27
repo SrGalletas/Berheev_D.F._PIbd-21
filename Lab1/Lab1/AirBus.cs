@@ -37,16 +37,30 @@ namespace Lab1
         /// <param name="wings">Признак наличия крыльев</param>
         /// <param name="tail">Признак наличия хвоста</param>
         public AirBus(int maxSpeed, float weight, Color mainColor, Color dopColor, bool
+
         turbines, bool wings, bool tail) :
             base(maxSpeed, weight, mainColor)
+
+     
+
         {
             DopColor = dopColor;
             Turbines = turbines;
             Wings = wings;
             Tail = tail;
+
         }
 
-        /// <summary>
+
+
+
+                    
+            
+
+        
+     
+
+        /// <hisummary>
         /// Отрисовка аэробуса
         /// </summary>
         /// <param name="g"></param>
