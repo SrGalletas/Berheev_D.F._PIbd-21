@@ -21,7 +21,7 @@ namespace Lab1
         /// Ширина окна отрисовки
         /// </summary>
         protected int _pictureWidth;
-        //Высота окна отрисовки
+        ///Высота окна отрисовки
         protected int _pictureHeight;
         /// <summary>
         /// Максимальная скорость

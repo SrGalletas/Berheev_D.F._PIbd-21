@@ -70,20 +70,22 @@ namespace Lab1
             Brush brGray = new SolidBrush(MainColor);
             //крылья
             Pen gray = new Pen(Color.Gray, 10);
-            g.DrawLine(gray, _startPosX + 20, _startPosY - 20, _startPosX + 45, _startPosY + 25);
-            g.DrawLine(gray, _startPosX + 20, _startPosY + 65, _startPosX + 45, _startPosY + 25);
-
-            // теперь отрисуем основной кузов аэробуса
-            Pen grayPen = new Pen(Color.Gray, 10);
-            g.DrawEllipse(pen, _startPosX - 5, _startPosY + 15, 100, 20);
-            g.FillEllipse(brGray, _startPosX - 5, _startPosY + 15, 100, 20);
+            g.DrawLine(gray, _startPosX + 40, _startPosY, _startPosX + 65, _startPosY + 40);
+            g.DrawLine(gray, _startPosX + 40, _startPosY + 75, _startPosX + 65, _startPosY + 40);
 
             //хвост
-            g.DrawLine(grayPen, _startPosX - 15, _startPosY, _startPosX, _startPosY + 25);
-            
+            Pen grayPen = new Pen(Color.Gray, 10);
+            g.DrawLine(grayPen, _startPosX, _startPosY + 7, _startPosX + 15, _startPosY + 32);
+
+            // теперь отрисуем основной кузов аэробуса
+          
+            g.DrawEllipse(pen, _startPosX + 10, _startPosY + 25, 100, 20);
+            g.FillEllipse(brGray, _startPosX + 10, _startPosY + 25, 100, 20);
+
+                       
             // рисуем окно аэробуса
             Pen white = new Pen(Color.White, 3);
-            g.DrawLine(white, _startPosX + 80, _startPosY + 20, _startPosX + 90, _startPosY + 25);
+            g.DrawLine(white, _startPosX + 96, _startPosY + 31, _startPosX + 105, _startPosY + 36);
         }
     }
 }
