@@ -85,25 +85,22 @@ namespace Lab1
                 {
                     //Начинаем уровень
                     WriteToFile("Level" + Environment.NewLine, fs);
-                    for (int i = 0; i < countPlaces; i++)
+
+                    foreach (ITransport air in level)
                     {
-                        try
+                        //если место не пустое
+                        //Записываем тип самолёта
+                        if (air.GetType().Name == "Air")
                         {
-                            var air = level[i];
-                            //если место не пустое
-                            //Записываем тип самолёта
-                            if (air.GetType().Name == "Air")
-                            {
-                                WriteToFile(i + ":Air:", fs);
-                            }
-                            if (air.GetType().Name == "AirBus")
-                            {
-                                WriteToFile(i + ":AirBus:", fs);
-                            }
-                            //Записываемые параметры
-                            WriteToFile(air + Environment.NewLine, fs);
+                            WriteToFile(level.GetKey + ":Air:", fs);
                         }
-                        finally { }
+                        if (air.GetType().Name == "AirBus")
+                        {
+                            WriteToFile(level.GetKey + ":AirBus:", fs);
+                        }
+                        //Записываемые параметры
+                        WriteToFile(air + Environment.NewLine, fs);
+
                     }
                 }
             }
@@ -139,6 +136,7 @@ namespace Lab1
                 {
                     bufferTextFromFile += temp.GetString(b);
                 }
+
             }
 
             bufferTextFromFile = bufferTextFromFile.Replace("\r", "");
@@ -159,6 +157,7 @@ namespace Lab1
                 throw new Exception("Неверный формат файла");
             }
             int counter = -1;
+            int counterAir = 0;
             ITransport air = null;
             for (int i = 1; i < strs.Length; ++i)
             {
@@ -167,6 +166,7 @@ namespace Lab1
                 {
                     //начинаем новый уровень
                     counter++;
+                    counterAir = 0;
                     parkingStages.Add(new Airport<ITransport>(countPlaces, pictureWidth,
                     pictureHeight));
                     continue;
@@ -186,7 +186,15 @@ namespace Lab1
                 parkingStages[counter][Convert.ToInt32(strs[i].Split(':')[0])] = air;
             }
         }
+        /// <summary>
+        /// Сортировка уровней
+        /// </summary>
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }
+
 
 

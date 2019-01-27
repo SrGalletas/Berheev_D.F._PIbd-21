@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Air.cs" />
+    <Compile Include="AirportAlreadyHaveException.cs" />
     <Compile Include="AirportOccupiedPlaceException.cs" />
     <Compile Include="AirportOverflowException.cs" />
     <Compile Include="AirtportNotFoundException.cs" />
